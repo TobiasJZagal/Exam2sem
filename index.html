@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Main.css">
     <title>Bergstorm</title>
 </head>
 
@@ -11,13 +12,6 @@
 
 
     <style>
-        .data-billede{
-
-            height: 200px;
-            width: 200px;
-
-            background-size: 20em;
-        }
 
     </style>
 
@@ -42,7 +36,7 @@
 
     </nav>
     <div class="splash">
-        <img src="4-015-r.png" width="370px" style="background-color: #ffc4db">
+        <img src="4-015-r.png" width="100%">
 
     </div>
 
@@ -154,7 +148,7 @@
                 klon.querySelector(".data-pris").innerHTML =  item.acf.pris;
                 klon.querySelector(".data-overskrift").innerHTML = item.acf.titel;
                klon.querySelector(".data-billede").style = "background-image: url(" + item.acf.billede + ")";
-                    klon.querySelector(".data-pris").innerHTML =  item.acf.kategori;
+
 
 
              //   if (eventsAndet.acf.info.length > 200) {
