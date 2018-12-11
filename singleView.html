@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Main.css">
+    <link rel="stylesheet" href="MainSingle.css">
     <title>Bergstorm</title>
 </head>
 
@@ -33,32 +33,12 @@
 
 
     </nav>
-    <div class="splash">
-        <img src="4-015-r.png" width="100%">
 
-    </div>
+
+
 
     <div class="mainContainer">
-        <div class="filter">
 
-            <img src="kisspng-computer-icons-iconfinder-symbol-apple-icon-image-setting-svg-png-icon-free-download-247372-onl-5b65039cbd7e84.8173591415333467167762.png" width="20px">
-
-             <button class="filter-type" data-type="alle">Alle</button>
-            <button class="filter-type" data-type="vedheng">Vedhæng</button>
-            <button class="filter-type" data-type="ringe">Ringe</button>
-            <button class="filter-type" data-type="oreringe">Øreringe</button>
-
-
-            <button class="kollektion-type" data-type="collection 1">Collection 1</button>
-            <button class="kollektion-type" data-type="collection 2">Collection 2</button>
-
-
-
-
-
-
-
-        </div>
 
 
         <main class="items">
@@ -80,8 +60,7 @@
 
             <p class="data-overskrift"></p>
             <p class="data-pris"></p>
-
-
+            <p class="data-beskrivelse"></p>
         </article>
     </template>
 
@@ -92,9 +71,10 @@
         let dest = document.querySelector(".data-container");
 
         let jsonFile;
-        let i = 0;
-        let Filter = "alle";
-        let collection = "alle";
+
+        let urlParams = new URLSearchParams(window.location.search);
+
+        let id = urlParams.get("id");
 
 
         document.addEventListener("DOMContentLoaded", getJson);
@@ -107,37 +87,9 @@
             showItems();
         }
 
-         document.querySelectorAll(".filter-type").forEach(knap => {
-            knap.addEventListener("click", filtering)
-
-        });
-
-
-         document.querySelectorAll(".kollektion-type").forEach(knap => {
-            knap.addEventListener("click", filterCollection)
-
-        });
-
-         function filtering() {
-
-
-            collection = "alle";
-            dest.textContent = "";
-            Filter = this.getAttribute("data-type");
-            showItems();
-
-
-        }
-
-        function filterCollection() {
-            Filter = "alle";
-            dest.textContent = "";
-           collection = this.getAttribute("data-type");
-            showItems();
 
 
 
-        }
 
 
         function showItems() {
@@ -150,22 +102,20 @@
             jsonFile.forEach(item => {
 
 
+                if (item.id == id){
 
 
-                if (item.acf.kategori == Filter || Filter == "alle") {
 
-                if (item.acf.kollektion == collection || collection == "alle") {
 
-                if (i < 3) {
-                i++;
+
 
                 let klon = temp.cloneNode(true).content;
                 /*Tager videoens ID fra et almindeligt youtube-link og sætter ind i et embed-link, så ethvert youtube-link kan indsættes i formularen*/
 
 
-                klon.querySelector(".tempContainer").addEventListener("click", () => {
-                    window.location.href = "singleView.html?id=" + item.id;
-               });
+            //    klon.querySelector(".eventContainer").addEventListener("click", () => {
+            //        window.location.href = "single.html?id=" + eventsAndet.id;
+            //    });
 
 
 
@@ -176,8 +126,7 @@
                 klon.querySelector(".data-pris").innerHTML =  item.acf.pris;
                 klon.querySelector(".data-overskrift").innerHTML = item.acf.titel;
                klon.querySelector(".data-billede").src = item.acf.billede ;
-
-
+                klon.querySelector(".data-beskrivelse").innerHTML = item.acf.beskrivelse;
 
 
              //   if (eventsAndet.acf.info.length > 200) {
@@ -190,9 +139,9 @@
 
 
                 dest.appendChild(klon);
+
                 }
-                }
-                }
+
             })
 
         }

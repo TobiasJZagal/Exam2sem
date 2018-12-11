@@ -2,7 +2,7 @@
 
 
             width: 100%;
-            max-height: 400px;
+            background-color: #f7b9c3
 
         }
 .splash img{
@@ -31,8 +31,13 @@
 }
 
 .data-container{
+
+    margin-top: 2em;
+
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
+    grid-gap: 1em;
+
 
 
 }
