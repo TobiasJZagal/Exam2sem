@@ -12,13 +12,19 @@
 
 
 
-
+    <div class="HeaderBackground">
     <nav class="header">
 
-        <div class="menu">
-        <label for="toggle">&#9776;</label>
-        <input type="checkbox" id="toggle" />
-        </div>
+         <label for="toggle">&#9776;</label>
+            <input type="checkbox" id="toggle" />
+
+
+            <div class="menu">
+                <a href="collectionPage.html">Collections</a>
+                <a href="https://www.almbrand.dk/?gclid=EAIaIQobChMIhcWKgIP83QIVDU8YCh3hDgOAEAAYASAAEgI6nPD_BwE">Link</a>
+                <a href="https://www.almbrand.dk/?gclid=EAIaIQobChMIhcWKgIP83QIVDU8YCh3hDgOAEAAYASAAEgI6nPD_BwE">Link</a>
+
+            </div>
 
 
 
@@ -33,6 +39,7 @@
 
 
     </nav>
+    </div>
     <div class="splash">
         <img src="4-015-r.png" width="100%">
 
@@ -123,7 +130,9 @@
 
                 console.log(collectionId)
 
-
+                       klon.querySelector(".tempContainer").addEventListener("click", () => {
+                            window.location.href = "singleView.html?id=" + item.id;
+                        });
 
 
 
