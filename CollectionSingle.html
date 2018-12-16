@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="MainSingle.css">
+    <link rel="stylesheet" href="MainCollectionSingle.css">
     <title>Bergstorm</title>
 </head>
 
@@ -33,12 +33,12 @@
 
 
     </nav>
+    <div class="splash">
+        <img src="4-015-r.png" width="100%">
 
-
-
+    </div>
 
     <div class="mainContainer">
-
 
 
         <main class="items">
@@ -55,12 +55,15 @@
 
     <template class="temp">
         <article class="tempContainer">
+            <p class="data-collectionName"></p>
             <img class="data-billede" src="">
 
 
             <p class="data-overskrift"></p>
             <p class="data-pris"></p>
-            <p class="data-beskrivelse"></p>
+
+
+
         </article>
     </template>
 
@@ -74,8 +77,7 @@
 
         let urlParams = new URLSearchParams(window.location.search);
 
-        let id = urlParams.get("id");
-
+        let collectionId = urlParams.get("collectionId");
 
         document.addEventListener("DOMContentLoaded", getJson);
 
@@ -92,6 +94,7 @@
 
 
 
+
         function showItems() {
 
             let dest = document.querySelector(".data-container"),
@@ -102,7 +105,11 @@
             jsonFile.forEach(item => {
 
 
-                if (item.id == id){
+
+                  if (item.acf.kollektion === collectionId) {
+
+
+
 
 
 
@@ -112,20 +119,23 @@
                 let klon = temp.cloneNode(true).content;
 
 
-            //    klon.querySelector(".eventContainer").addEventListener("click", () => {
-            //        window.location.href = "single.html?id=" + eventsAndet.id;
-            //    });
+
+
+                console.log(collectionId)
 
 
 
 
 
 
-
-                klon.querySelector(".data-pris").innerHTML =  item.acf.pris;
+                     klon.querySelector(".data-pris").innerHTML =  item.acf.pris;
                 klon.querySelector(".data-overskrift").innerHTML = item.acf.titel;
                klon.querySelector(".data-billede").src = item.acf.billede ;
-                klon.querySelector(".data-beskrivelse").innerHTML = item.acf.beskrivelse;
+                 klon.querySelector(".data-collectionName").innerHTML =  item.acf.kollektion;
+
+
+
+
 
 
              //   if (eventsAndet.acf.info.length > 200) {
@@ -139,8 +149,8 @@
 
                 dest.appendChild(klon);
 
-                }
 
+                  }
             })
 
         }

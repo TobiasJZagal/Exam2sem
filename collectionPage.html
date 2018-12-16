@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="MainSingle.css">
+    <link rel="stylesheet" href="MainCollection.css">
     <title>Bergstorm</title>
 </head>
 
@@ -35,10 +35,7 @@
     </nav>
 
 
-
-
     <div class="mainContainer">
-
 
 
         <main class="items">
@@ -55,12 +52,13 @@
 
     <template class="temp">
         <article class="tempContainer">
-            <img class="data-billede" src="">
+
+                <p class="data-collectionName"></p>
+                <img class="data-image" src="">
+                <img class="data-button" src="long-arrow-right.png" width="100%">
 
 
-            <p class="data-overskrift"></p>
-            <p class="data-pris"></p>
-            <p class="data-beskrivelse"></p>
+
         </article>
     </template>
 
@@ -72,20 +70,18 @@
 
         let jsonFile;
 
-        let urlParams = new URLSearchParams(window.location.search);
-
-        let id = urlParams.get("id");
 
 
         document.addEventListener("DOMContentLoaded", getJson);
 
         async function getJson() {
 
-            let myJson = await fetch("http://tobiasjzagal.dk/Exam/wordpress/index.php/wp-json/wp/v2/collections");
+            let myJson = await fetch("http://tobiasjzagal.dk/Exam/wordpress/index.php/wp-json/wp/v2/kollektion");
 
             jsonFile = await myJson.json();
             showItems();
         }
+
 
 
 
@@ -102,8 +98,6 @@
             jsonFile.forEach(item => {
 
 
-                if (item.id == id){
-
 
 
 
@@ -111,21 +105,26 @@
 
                 let klon = temp.cloneNode(true).content;
 
-
-            //    klon.querySelector(".eventContainer").addEventListener("click", () => {
-            //        window.location.href = "single.html?id=" + eventsAndet.id;
-            //    });
+                console.log(item.acf.preview_image)
 
 
 
+                   klon.querySelector(".tempContainer").addEventListener("click", () => {
+                    window.location.href = "CollectionSingle.html?collectionId=" + item.acf.collection_name;
+               });
 
 
 
 
-                klon.querySelector(".data-pris").innerHTML =  item.acf.pris;
-                klon.querySelector(".data-overskrift").innerHTML = item.acf.titel;
-               klon.querySelector(".data-billede").src = item.acf.billede ;
-                klon.querySelector(".data-beskrivelse").innerHTML = item.acf.beskrivelse;
+
+
+
+                 klon.querySelector(".data-collectionName").innerHTML =  item.acf.collection_name;
+                 klon.querySelector(".data-image").src =  item.acf.preview_image;
+
+
+
+
 
 
              //   if (eventsAndet.acf.info.length > 200) {
@@ -139,7 +138,6 @@
 
                 dest.appendChild(klon);
 
-                }
 
             })
 

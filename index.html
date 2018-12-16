@@ -12,45 +12,72 @@
 
 
 
+    <div class="HeaderBackground">
+        <nav class="header">
 
-    <nav class="header">
 
-        <div class="menu">
-        <label for="toggle">&#9776;</label>
-        <input type="checkbox" id="toggle" />
-        </div>
+            <label for="toggle">&#9776;</label>
+            <input type="checkbox" id="toggle" />
+
+
+            <div class="menu">
+                <a href="collectionPage.html">Collections</a>
+                <a href="https://www.almbrand.dk/?gclid=EAIaIQobChMIhcWKgIP83QIVDU8YCh3hDgOAEAAYASAAEgI6nPD_BwE">Link</a>
+                <a href="https://www.almbrand.dk/?gclid=EAIaIQobChMIhcWKgIP83QIVDU8YCh3hDgOAEAAYASAAEgI6nPD_BwE">Link</a>
+
+            </div>
+
 
 
 
             <a href="http://google.com" class="logo">
-                <img src="bergstormLogo.png"  height="50px">
+                <img src="bergstormLogo.png" height="50px">
             </a>
 
 
-        <a href="http://google.com" class="cart">
-            <img src="kisscc0-shopping-cart-shopping-centre-logo-shopping-list-shopping-cart-5b5f96dea86d84.6813878715329911986899.png"  height="50px">
-        </a>
+            <a href="http://google.com" class="cart">
+                <img src="kisscc0-shopping-cart-shopping-centre-logo-shopping-list-shopping-cart-5b5f96dea86d84.6813878715329911986899.png" height="50px">
+            </a>
 
 
-    </nav>
+        </nav>
+
+    </div>
+
+
+
+
     <div class="splash">
         <img src="4-015-r.png" width="100%">
 
     </div>
 
+
+
     <div class="mainContainer">
         <div class="filter">
 
-            <img src="kisspng-computer-icons-iconfinder-symbol-apple-icon-image-setting-svg-png-icon-free-download-247372-onl-5b65039cbd7e84.8173591415333467167762.png" width="20px">
+            <label class="togglefilter" for="toggleSort">
 
-             <button class="filter-type" data-type="alle">Alle</button>
-            <button class="filter-type" data-type="vedheng">Vedhæng</button>
-            <button class="filter-type" data-type="ringe">Ringe</button>
-            <button class="filter-type" data-type="oreringe">Øreringe</button>
+                <div class="sorting">
 
 
-            <button class="kollektion-type" data-type="collection 1">Collection 1</button>
-            <button class="kollektion-type" data-type="collection 2">Collection 2</button>
+
+                    <p class="textSorting">Sorting </p>
+                    <img class="imageSorting" src="kisspng-computer-icons-iconfinder-symbol-apple-icon-image-setting-svg-png-icon-free-download-247372-onl-5b65039cbd7e84.8173591415333467167762.png" width="40px">
+
+                </div>
+            </label>
+
+            <input type="checkbox" id="toggleSort"/>
+
+            <div class="menuSort">
+                <button class="filter-type" data-type="alle">Alle</button>
+                <button class="filter-type" data-type="vedheng">Vedhæng</button>
+                <button class="filter-type" data-type="ringe">Ringe</button>
+                <button class="filter-type" data-type="oreringe">Øreringe</button>
+            </div>
+
 
 
 
@@ -80,6 +107,7 @@
 
             <p class="data-overskrift"></p>
             <p class="data-pris"></p>
+            <p class="data-collectionName"></p>
 
 
         </article>
@@ -88,11 +116,9 @@
 
 
     <script>
-
         let dest = document.querySelector(".data-container");
 
         let jsonFile;
-        let i = 0;
         let Filter = "alle";
         let collection = "alle";
 
@@ -107,18 +133,18 @@
             showItems();
         }
 
-         document.querySelectorAll(".filter-type").forEach(knap => {
+        document.querySelectorAll(".filter-type").forEach(knap => {
             knap.addEventListener("click", filtering)
 
         });
 
 
-         document.querySelectorAll(".kollektion-type").forEach(knap => {
+        document.querySelectorAll(".kollektion-type").forEach(knap => {
             knap.addEventListener("click", filterCollection)
 
         });
 
-         function filtering() {
+        function filtering() {
 
 
             collection = "alle";
@@ -132,7 +158,7 @@
         function filterCollection() {
             Filter = "alle";
             dest.textContent = "";
-           collection = this.getAttribute("data-type");
+            collection = this.getAttribute("data-type");
             showItems();
 
 
@@ -154,50 +180,51 @@
 
                 if (item.acf.kategori == Filter || Filter == "alle") {
 
-                if (item.acf.kollektion == collection || collection == "alle") {
-
-                if (i < 3) {
-                i++;
-
-                let klon = temp.cloneNode(true).content;
-                /*Tager videoens ID fra et almindeligt youtube-link og sætter ind i et embed-link, så ethvert youtube-link kan indsættes i formularen*/
+                    if (item.acf.kollektion == collection || collection == "alle") {
 
 
-                klon.querySelector(".tempContainer").addEventListener("click", () => {
-                    window.location.href = "singleView.html?id=" + item.id;
-               });
+
+                        let klon = temp.cloneNode(true).content;
 
 
 
 
+                        console.log(item.acf.length)
 
-
-
-                klon.querySelector(".data-pris").innerHTML =  item.acf.pris;
-                klon.querySelector(".data-overskrift").innerHTML = item.acf.titel;
-               klon.querySelector(".data-billede").src = item.acf.billede ;
-
-
-
-
-             //   if (eventsAndet.acf.info.length > 200) {
-             //   klon.querySelector(".data-info").innerHTML = "<p>" + eventsAndet.acf.info.substring(0,200) + "..." + "</p>";
-             //   } else {
-             //       klon.querySelector(".data-info").innerHTML = "<p>" + eventsAndet.acf.info + "</p>";
-             //   }
+                        klon.querySelector(".tempContainer").addEventListener("click", () => {
+                            window.location.href = "singleView.html?id=" + item.id;
+                        });
 
 
 
 
-                dest.appendChild(klon);
-                }
-                }
+
+
+
+                        klon.querySelector(".data-pris").innerHTML = item.acf.pris;
+                        klon.querySelector(".data-overskrift").innerHTML = item.acf.titel;
+                        klon.querySelector(".data-billede").src = item.acf.billede;
+                        klon.querySelector(".data-collectionName").innerHTML = item.acf.kollektion;
+
+
+
+
+                        //   if (eventsAndet.acf.info.length > 200) {
+                        //   klon.querySelector(".data-info").innerHTML = "<p>" + eventsAndet.acf.info.substring(0,200) + "..." + "</p>";
+                        //   } else {
+                        //       klon.querySelector(".data-info").innerHTML = "<p>" + eventsAndet.acf.info + "</p>";
+                        //   }
+
+
+
+
+                        dest.appendChild(klon);
+
+                    }
                 }
             })
 
         }
-
-
 
     </script>
 

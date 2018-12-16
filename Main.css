@@ -1,4 +1,8 @@
- .data-billede{
+body {
+    margin: 0;
+}
+
+.data-billede{
 
 
             width: 100%;
@@ -6,27 +10,38 @@
 
         }
 .splash img{
+
     background-color: #ffc4db
+
 }
 
 
 .header{
+    background-color: #ffffff;
+    height: 75px;
+    border-radius: 0px 0px 20px 20px;
+    transition: 2s;
     display: grid;
-    grid-template: 1fr/1fr 1fr 1fr;
+    grid-template: 1fr /20px 1fr 1fr 1fr 20px;
+
 }
 
-.menu{
+.Burg{
+
     grid-area: 1/1/1/1;
     text-align: left;
 }
 
 .logo{
-     grid-area: 1/2/1/2;
+
+    margin-top: 10px;
+     grid-area: 1/3/1/3;
     text-align: center;
 }
 
 .cart{
-     grid-area: 1/3/1/3;
+    margin-top: 10px;
+     grid-area: 1/4/1/4;
     text-align: right;
 }
 
@@ -38,3 +53,151 @@
 }
 
 
+.HeaderBackground{
+    transition: 2s;
+    background-color: #ffc4db;
+
+
+}
+
+
+
+.menu{
+    transition: 2s;
+    display: none;
+    position: absolute;
+    top: 60px;
+    text-align: center;
+    width: 100%;
+    height: 160px;
+
+    background-color: #ffffff;
+    border-radius: 0px 0px 70px 70px;
+}
+
+.menu a{
+    transition: 2s;
+    text-decoration:underline;
+    color: #000000;
+    margin-top: 1em;
+    font-size: 1.4em;
+    display: block;
+
+
+}
+
+#toggle:checked ~ .menu{
+    transition: 2s;
+             display: block;
+
+
+    }
+
+#toggle{
+    visibility: hidden;
+}
+
+label {
+    margin-top: 10px;
+    grid-area: 1/2/1/2;
+    font-size: 2.3em;
+}
+
+
+
+.menuSort{
+
+    display: none;
+    grid-area: 2/2/2/2;
+     border-radius: 0px 0px  80px 80px;
+
+
+
+
+}
+
+
+.menuSort button{
+    background-color:transparent;
+    display: none;
+    border: none;
+
+    width: 100%;
+    text-decoration: none;
+
+    font-size: 1.6em;
+    padding-bottom: 0.5em;
+
+
+}
+.filter{
+  grid-template: 1fr 2fr 0px/1fr 240px 1fr;
+    display: grid;
+
+}
+
+.sorting{
+
+  grid-template: 1fr/1fr 240px 1fr;
+    display: grid;
+text-align: center;
+
+
+}
+
+
+
+.togglefilter{
+
+    grid-area: 1/2/1/2;
+
+}
+
+.imageSorting{
+
+    margin-top: 3px;
+    width: 35px;
+   text-align: center;
+   margin-left: 0.4em;
+    grid-area: 1/2/1/2;
+
+}
+
+.textSorting{
+    border-radius: 80px;
+    background-color: #fcdae7;
+
+    margin: 0;
+    grid-area: 1/2/1/2;
+
+}
+
+input{
+    visibility: hidden;
+}
+
+
+#toggleExtra{
+    grid-area: 1/2/7/2;
+}
+
+#toggleExtra:checked ~ .textSorting{
+
+}
+
+
+#toggleSort:checked ~ .menuSort button{
+
+
+             display: block;
+
+
+    }
+
+#toggleSort:checked ~ .menuSort{
+
+
+             display: block;
+
+
+    }
