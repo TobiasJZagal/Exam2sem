@@ -11,7 +11,7 @@ body {
         }
 .splash img{
 
-    background-color: #ffc4db
+    background-color: #ffc4db;
 
 }
 
@@ -201,3 +201,40 @@ input{
 
 
     }
+ @media screen and (min-width: 1200px) {
+     body{
+
+     }
+
+
+.data-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+
+}
+
+     .data-billede{
+         max-width: 300px;
+     }
+
+
+.splash{
+    margin-top: 1em;
+    display:grid;
+    grid-template: 400px/ 1fr 3fr 1fr
+}
+.splash img{
+    width: auto;
+    height: 100%;
+    grid-area: 1/2/1/2;
+    background-color: transparent;
+    text-align: center;
+}
+
+.splashBag{
+    grid-area: 1/2/1/2;
+    background-color: #ffc4db;
+}
+
+}
